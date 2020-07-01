@@ -13,40 +13,38 @@ ACTIVATION = 1
 
 
 def get_actor(n, bound):
-    last_init = tf.random_uniform_initializer(minval=-0.003, maxval=0.003)
+    init_weights = tf.random_uniform_initializer(minval=-0.003, maxval=0.003)
 
-    inputs = Input(shape=(n,))
-    out = Dense(512, activation="relu")(inputs)
-    out = BatchNormalization()(out)
-    out = Dense(512, activation="relu")(out)
-    out = BatchNormalization()(out)
-    outputs = Dense(1, activation="tanh", kernel_initializer=last_init)(out)
+    input_layer = Input(shape=(n,))
+    hidden_layers = Dense(512, activation="relu")(input_layer)
+    hidden_layers = BatchNormalization()(hidden_layers)
+    hidden_layers = Dense(512, activation="relu")(hidden_layers)
+    hidden_layers = BatchNormalization()(hidden_layers)
+    output_layer = Dense(1, activation="tanh", kernel_initializer=init_weights)(hidden_layers)
+    output_layer = output_layer * bound
 
-    outputs = outputs * 2
-    model = tf.keras.Model(inputs, outputs)
-    return model
+    return tf.keras.Model(input_layer, output_layer)
 
 
 def get_critic(n_states, n_actions):
-    # State as input
-    state_input = Input(shape=n_states)
-    state_out = Dense(16, activation="relu")(state_input)
-    state_out = BatchNormalization()(state_out)
-    state_out = Dense(32, activation="relu")(state_out)
-    state_out = BatchNormalization()(state_out)
+    nn_1_input_layer = Input(shape=n_states)
+    nn_1_hidden = Dense(16, activation="relu")(nn_1_input_layer)
+    nn_1_hidden = BatchNormalization()(nn_1_hidden)
+    nn_1_hidden = Dense(32, activation="relu")(nn_1_hidden)
+    nn_1_hidden = BatchNormalization()(nn_1_hidden)
 
-    action_input = Input(shape=n_actions)
-    action_out = Dense(32, activation="relu")(action_input)
-    action_out = BatchNormalization()(action_out)
+    nn_2_input_layer = Input(shape=n_actions)
+    nn_2_hidden = Dense(32, activation="relu")(nn_2_input_layer)
+    nn_2_hidden = BatchNormalization()(nn_2_hidden)
+    nn_2_hidden = Dense(32, activation="relu")(nn_2_hidden)
+    nn_2_hidden = BatchNormalization()(nn_2_hidden)
 
-    concat = Concatenate()([state_out, action_out])
+    concat = Concatenate()([nn_1_hidden, nn_2_hidden])
 
-    out = Dense(512, activation="relu")(concat)
-    out = BatchNormalization()(out)
-    out = Dense(512, activation="relu")(out)
-    out = BatchNormalization()(out)
-    outputs = Dense(1)(out)
+    hidden_layers = Dense(512, activation="relu")(concat)
+    hidden_layers = BatchNormalization()(hidden_layers)
+    hidden_layers = Dense(512, activation="relu")(hidden_layers)
+    hidden_layers = BatchNormalization()(hidden_layers)
+    output_layer = Dense(1)(hidden_layers)
 
-    model = tf.keras.Model([state_input, action_input], outputs)
-
-    return model
+    return tf.keras.Model([nn_1_input_layer, nn_2_input_layer], output_layer)

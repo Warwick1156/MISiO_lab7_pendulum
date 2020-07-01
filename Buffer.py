@@ -2,12 +2,6 @@ import tensorflow as tf
 import numpy as np
 
 
-STATE = 0
-ACTION = 1
-REWARD = 2
-NEXT_STATE = 3
-
-
 class Buffer:
     def __init__(self, n_states, n_actions, capacity=100000, batch_size=64):
         self.capacity = capacity
@@ -19,14 +13,14 @@ class Buffer:
         self.reward = np.zeros((self.capacity, 1))
         self.next_state = np.zeros((self.capacity, n_states))
 
-    def record(self, observation):
+    def record(self, previous_state, action, reward, state):
         index = self.counter % self.capacity
         # print(index)
 
-        self.state[index] = observation[STATE]
-        self.action[index] = observation[ACTION]
-        self.reward[index] = observation[REWARD]
-        self.next_state[index] = observation[NEXT_STATE]
+        self.state[index] = previous_state
+        self.action[index] = action
+        self.reward[index] = reward
+        self.next_state[index] = state
 
         self.counter += 1
         # print(self.counter)
