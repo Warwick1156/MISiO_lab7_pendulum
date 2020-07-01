@@ -12,7 +12,7 @@ ACTIVATION = 1
 #         out = Dense(layer[NEURONS], activation=layer[ACTIVATION])
 
 
-def get_actor(n, bound):
+def get_actor(n, bound, n_actions):
     init_weights = tf.random_uniform_initializer(minval=-0.003, maxval=0.003)
 
     input_layer = Input(shape=(n,))
@@ -20,7 +20,7 @@ def get_actor(n, bound):
     hidden_layers = BatchNormalization()(hidden_layers)
     hidden_layers = Dense(512, activation="relu")(hidden_layers)
     hidden_layers = BatchNormalization()(hidden_layers)
-    output_layer = Dense(1, activation="tanh", kernel_initializer=init_weights)(hidden_layers)
+    output_layer = Dense(n_actions, activation="tanh", kernel_initializer=init_weights)(hidden_layers)
     output_layer = output_layer * bound
 
     return tf.keras.Model(input_layer, output_layer)
@@ -45,6 +45,6 @@ def get_critic(n_states, n_actions):
     hidden_layers = BatchNormalization()(hidden_layers)
     hidden_layers = Dense(512, activation="relu")(hidden_layers)
     hidden_layers = BatchNormalization()(hidden_layers)
-    output_layer = Dense(1)(hidden_layers)
+    output_layer = Dense(n_actions)(hidden_layers)
 
     return tf.keras.Model([nn_1_input_layer, nn_2_input_layer], output_layer)

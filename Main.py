@@ -22,8 +22,8 @@ if __name__ == '__main__':
                   env=env_helper,
                   alpha=0.005,
                   name='WalkerTest',
-                  compile_nn=False)
-    agent.run(iterations=25, render=True, verbose=True, train=True)
-    # agent.plot(agent.learning_rewards)
-    agent.run(iterations=10, render=True, verbose=True, train=False)
-    # agent.plot(agent.testing_reward)
+                  compile_nn=True)
+    agent.run(iterations=500, render=False, verbose=True, train=True)
+    agent.plot(agent.learning_rewards)
+    agent.run(iterations=20, render=True, verbose=True, train=False)
+    agent.plot(agent.testing_reward)

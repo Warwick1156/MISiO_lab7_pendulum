@@ -2,32 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87f4daf7-4b05-4ca5-aae1-e8c9b6aa973a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Agent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Buffer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Buffer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NN_factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/NN_factory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_actor.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_actor/saved_model.pb" beforeDir="false" afterPath="$PROJECT_DIR$/test_actor/saved_model.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_actor/variables/variables.data-00000-of-00002" beforeDir="false" afterPath="$PROJECT_DIR$/test_actor/variables/variables.data-00000-of-00002" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_actor/variables/variables.data-00001-of-00002" beforeDir="false" afterPath="$PROJECT_DIR$/test_actor/variables/variables.data-00001-of-00002" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_actor/variables/variables.index" beforeDir="false" afterPath="$PROJECT_DIR$/test_actor/variables/variables.index" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_actor_target.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_actor_target/saved_model.pb" beforeDir="false" afterPath="$PROJECT_DIR$/test_actor_target/saved_model.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_actor_target/variables/variables.data-00000-of-00002" beforeDir="false" afterPath="$PROJECT_DIR$/test_actor_target/variables/variables.data-00000-of-00002" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_actor_target/variables/variables.data-00001-of-00002" beforeDir="false" afterPath="$PROJECT_DIR$/test_actor_target/variables/variables.data-00001-of-00002" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_actor_target/variables/variables.index" beforeDir="false" afterPath="$PROJECT_DIR$/test_actor_target/variables/variables.index" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_critic.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_critic/saved_model.pb" beforeDir="false" afterPath="$PROJECT_DIR$/test_critic/saved_model.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_critic/variables/variables.data-00000-of-00002" beforeDir="false" afterPath="$PROJECT_DIR$/test_critic/variables/variables.data-00000-of-00002" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_critic/variables/variables.data-00001-of-00002" beforeDir="false" afterPath="$PROJECT_DIR$/test_critic/variables/variables.data-00001-of-00002" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_critic/variables/variables.index" beforeDir="false" afterPath="$PROJECT_DIR$/test_critic/variables/variables.index" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_critic_target.h5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_critic_target/saved_model.pb" beforeDir="false" afterPath="$PROJECT_DIR$/test_critic_target/saved_model.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_critic_target/variables/variables.data-00000-of-00002" beforeDir="false" afterPath="$PROJECT_DIR$/test_critic_target/variables/variables.data-00000-of-00002" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_critic_target/variables/variables.data-00001-of-00002" beforeDir="false" afterPath="$PROJECT_DIR$/test_critic_target/variables/variables.data-00001-of-00002" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_critic_target/variables/variables.index" beforeDir="false" afterPath="$PROJECT_DIR$/test_critic_target/variables/variables.index" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -219,6 +197,11 @@
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Trash/Sample/A2C_sample_Keras.py</url>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Agent.py</url>
+          <line>55</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

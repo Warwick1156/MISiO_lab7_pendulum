@@ -7,6 +7,10 @@ from Buffer import Batch
 from NN_factory import get_actor, get_critic
 from OUP import Noise
 
+ACTOR = '_ACTOR'
+CRITIC = '_CRITIC'
+TARGET = '_TARGET'
+
 
 class Agent:
     def __init__(self, env, gamma, buffer, alpha, name='Default_Agent_Name', compile_nn=True):
@@ -52,10 +56,13 @@ class Agent:
         noisy_prediction = prediction.numpy() + noise
 
         # TODO: generalize to any number of actions
-        legal_action = np.clip(noisy_prediction, self.env_helper.action_bounds[0][0], self.env_helper.action_bounds[0][1])
+        # As I see in environment implementation, I don't have to clip prediction here
+        #legal_action = np.clip(noisy_prediction, self.env_helper.action_bounds[0][0], self.env_helper.action_bounds[0][1])
         # legal_action = np.clip(sample, -2, 2)
 
-        return [np.squeeze(legal_action)]
+        # return [np.squeeze(legal_action)]
+        # return [np.squeeze(noisy_prediction)]
+        return noisy_prediction
 
     def run(self, iterations=100, render=False, verbose=False, train=True):
         self.set_up_neural_networks(train)
@@ -76,24 +83,24 @@ class Agent:
         plt.show()
 
     def save(self):
-        self.actor.save(self.name + "_actor")
-        self.critic.save(self.name + "_critic")
-        self.actor_target.save(self.name + "_actor_target")
-        self.critic_target.save(self.name + "_critic_target")
+        self.actor.save(self.name + ACTOR)
+        self.critic.save(self.name + CRITIC)
+        self.actor_target.save(self.name + ACTOR + TARGET)
+        self.critic_target.save(self.name + CRITIC + TARGET)
 
     def load(self):
-        self.critic = load_model(self.name + "_actor")
-        self.critic_target = load_model(self.name + "_critic")
+        self.critic = load_model(self.name + ACTOR)
+        self.critic_target = load_model(self.name + CRITIC)
 
-        self.actor = load_model(self.name + "_actor_target")
-        self.actor_target = load_model(self.name + "_critic_target")
+        self.actor = load_model(self.name + ACTOR + TARGET)
+        self.actor_target = load_model(self.name + ACTOR + TARGET)
 
     def set_up_learning_components(self):
         self.critic = get_critic(self.env_helper.n_states, self.env_helper.n_actions)
         self.critic_target = get_critic(self.env_helper.n_states, self.env_helper.n_actions)
 
-        self.actor = get_actor(self.env_helper.n_states, self.env_helper.action_bounds[0][1])
-        self.actor_target = get_actor(self.env_helper.n_states, self.env_helper.action_bounds[0][1])
+        self.actor = get_actor(self.env_helper.n_states, self.env_helper.action_bounds[0][1], self.env_helper.n_actions)
+        self.actor_target = get_actor(self.env_helper.n_states, self.env_helper.action_bounds[0][1], self.env_helper.n_actions)
         # self.actor = get_actor(self.env_helper.n_states, 2)
         # self.actor_target = get_actor(self.env_helper.n_states, 2)
 
